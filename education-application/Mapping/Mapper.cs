@@ -44,8 +44,7 @@ namespace education_application
                         Id = t.Id,
                         Description = t.Description,
                         Link = t.Link,
-                        Name = t.Name,
-
+                        Name = t.Name
                     }).ToList()
                 };
             }
