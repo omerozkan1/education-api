@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+  redis:
+    image: redis:alpine
+    restart: always
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - pgconf:/etc/postgresql
+      - pglog:/var/log/postgresql
+
+  education-apigateway:
+    image: ${DOCKER_REGISTRY-}education/education-apigateway:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: education-apigateway/Dockerfile
+    depends_on: 
+     - education-api  
+     - postgres
+     - redis
+
+  education-api:
+    image: ${DOCKER_REGISTRY-}education/education-api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: education-api/Dockerfile
+    depends_on:
+      - postgres 
+      - redis  
+
+volumes:
+  pgdata:
+    driver: local
+  pgconf:
+    driver: local
+  pglog:
+    driver: local
+
+

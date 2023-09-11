@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  redis:
+    ports:
+      - "6379:6379" 
+  postgres:
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - PGDATA=/var/lib/postgresql/data
+      - PGCONF=/etc/postgresql
+      - PGLOG=/var/log/postgresql
+    ports:
+      - 5432:5432   
+    
+  education-apigateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - EducationApiClient=http://education-api
+      - PORT=80
+      - PATH_BASE=/education-apigateway      
+    ports:
+      - "5009:80"
+
+  education-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - PORT=80
+      - ConnectionString=User ID=postgres;Password=123456;Server=postgres;Database=postgres;Integrated Security=true;Pooling=true
+      - PATH_BASE=/education-api
+    ports:
+      - "5010:80" 
