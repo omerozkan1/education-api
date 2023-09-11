@@ -17,15 +17,6 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "education-api-test", "education-api-test\education-api-test.csproj", "{EA549414-0F6B-4EFD-B4AB-973A9DC25E23}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{46BF0701-1D09-4DB0-B0BA-FB8C668CCA43}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\create-training.png = ..\..\create-training.png
-		..\..\create-trainingProgram.png = ..\..\create-trainingProgram.png
-		..\..\test-results.png = ..\..\test-results.png
-		..\..\trainingPrograms.png = ..\..\trainingPrograms.png
-		..\..\trainings.png = ..\..\trainings.png
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
