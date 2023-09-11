@@ -21,10 +21,7 @@ builder.Services.AddSingleton<IConnectionMultiplexer>((n) => ConnectionMultiplex
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = builder.Configuration["id"], Version = builder.Configuration["version"] });
-    var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "api.xml");
-    c.IncludeXmlComments(filePath);
 });
-
 
 var app = builder.Build();
 
@@ -37,8 +34,6 @@ app.MapControllers();
 using var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
 var context = serviceScope.ServiceProvider.GetService<TrainingDbContext>();
 context.Database.EnsureCreated();
-context.Database.Migrate();
-
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
