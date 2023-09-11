@@ -38,7 +38,7 @@ namespace education_domain
 
             var response = await _dbContext.TrainingProgram.AsNoTracking().Include(t => t.Trainings).ToListAsync();
 
-            if (response is not null)
+            if (response.Any())
             {
                 await _redisConnection.GetDatabase().StringSetAsync(cacheKey, JsonSerializer.Serialize<List<TrainingProgram>>(response, options), new TimeSpan(0, 30, 0));
             }
